@@ -1,0 +1,3 @@
+[submodule "Encoding"]
+  path = Encoding
+  url = https://github.com/aikinai/Encoding-script.git
