@@ -7,4 +7,8 @@
 # displayed in the car.
 # 
 
-echo "$@" | ./romaji.sh | ./customdict.sh | ./titlecase.pl
+cd "$(dirname "$0")"
+
+read INPUT
+
+echo "$INPUT" | ./romaji.sh | ./titlecase.pl | ./customdict.sh
