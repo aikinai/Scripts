@@ -4,16 +4,18 @@
 OIFS="$IFS"
 IFS=$'\n'
 
-for FILE in $(find $1 -name '*.mp3' -o -name '*.m4a')
-do
-  INFO=$(mediainfo "$FILE")
+# for FILE in $(find $1 -name '*.mp3' -o -name '*.m4a')
+# do
 
-  # Chop off the top (with the filename) and check for non-ASCII
-  echo "$INFO" | tail -n +3 | ag '[\xe4-\xe9][\x80-\xbf][\x80-\xbf]|\xe3[\x81-\x83][\x80-\xbf]' > /dev/null
-  if [ $? -eq 0 ]; then
-#     echo "${FILE} contains Japanese"
+FILE="$1"
 
-    # Extract original metadata
+INFO=$(mediainfo "$FILE")
+
+# Chop off the top (with the filename) and check for non-ASCII
+echo "$INFO" | tail -n +3 | ag '[\xe4-\xe9][\x80-\xbf][\x80-\xbf]|\xe3[\x81-\x83][\x80-\xbf]' > /dev/null
+if [ $? -eq 0 ]; then
+
+  # Extract original metadata
         JA_ARTIST=$(grep "^Performer"       <<< "$INFO" | awk -F ": " '{print $2}')
   JA_ALBUM_ARTIST=$(grep "Album\/Performer" <<< "$INFO" | awk -F ": " '{print $2}')
          JA_ALBUM=$(grep "^Album "          <<< "$INFO" | awk -F ": " '{print $2}')
@@ -52,13 +54,14 @@ do
     fi
   done
 
-  COMMAND="/Applications/kid3.app/Contents/MacOS/kid3-cli $COMMAND \"$FILE\""
-
-  # eval $COMMAND
-
+  if [ -n "$COMMAND" ]; then
+    COMMAND="/Applications/kid3.app/Contents/MacOS/kid3-cli $COMMAND \"$FILE\""
+    eval $COMMAND
   fi
 
-done
+fi
+
+# done
 
 IFS="$OIFS" # Revert IFS
 

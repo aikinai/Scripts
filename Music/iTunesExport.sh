@@ -17,11 +17,13 @@ echo "---"
 SAVEIFS=$IFS
 IFS=$(echo -en "\n\b")
 
+# Romanize and set the genre on all updated files
 for NAME in ${UPDATED_FILES}
 do
   FILE="$(echo "/Volumes/BMW/${NAME}")"
   INITIAL="$(mediainfo "$FILE" | grep Performer | awk -F ": " '{print $2}' | head -c 1)"
   echo "${FILE}"
+  ./RomanizeMusic.sh
   /Applications/kid3.app/Contents/MacOS/kid3-cli -c "set genre '${INITIAL}'" "$FILE"
 done
 
