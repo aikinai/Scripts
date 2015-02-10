@@ -17,12 +17,13 @@ read INPUT
   -e 's/ Wo / o /g'                                                           \
   -e 's/　 / /g'                                                              \
   -e 's/Vājon/Version/g'                                                      \
+  -e 's/Bājon/Version/g'                                                      \
   -e 's/Porunogurafitei/Porno Graffiti/'                                      \
   -e 's/Takkīando Tsubasa/Takkī \& Tsubasa/'                                  \
   -e 's/Jannudaruku/Jeanne d\x27Arc/'                                         \
   -e 's/Supittsu/Spitz/'                                                      \
-  -e 's/Teiku/Take/'                                                          \
-  -e 's/Hamazaki/Hamasaki/'                                                   \
+  -e 's/teiku5/Take 5/'                                                       \
+  -e 's/Hamazaki Ayumi/Ayumi Hamasaki/'                                       \
   -e 's/Hisaishi Yuzuru/Joe Hisaishi/'                                        \
   -e 's/Hare Ta Hi Ni …/Hareta Hi Ni…/'                                       \
   -e 's/Pan Ya no Tetsudai/Panya no Tetsudai/'                                \
@@ -53,4 +54,50 @@ read INPUT
   -e 's/SomedayMyPrinceWillCome〜/Someday My Prince Will Come -/'             \
   -e 's/Itsuka Ōji Sama Ga/Itsuka Ōji-sama Ga/'                               \
   -e 's/(ALoveSuite-EDM-Mix)/(A Love Suite -EDM- Mix)/'                       \
-  -e 's/Acōsticver/Acoustic Ver/'
+  -e 's/Acōsticver/Acoustic Ver/'                                             \
+  -e 's/Niji Shoku Basu/Nijiiro Basu/'                                        \
+  -e 's/Yasashi Sa no Shizuku/Yasashisa no Shizuku/'                          \
+  -e 's/Onaji Doa o Kugure Tara/Onaji Doa o Kuguretara/'                      \
+  -e 's/Nippon (Neojapanesuku)/Nippon (Neo-Japanesque)/'                      \
+  -e 's/Dai no Nakayoshi Tama Chan/Dai no Nakayoshi Tama-chan/'               \
+  -e 's/Koyuki/Kona Yuki/'                                                    \
+  -e 's/Akai Tori ~REDBIRD/Akai Tori - RED BIRD/'                             \
+  -e 's/Happa Tai/Happatai/'                                                  \
+  -e 's/Kodō -InsidetheSunRemix/Kodō - Inside the Sun Remix/'                 \
+  -e 's/Aitashin (AlbumVersion)/ai ta kokoro (Album Version)/'                \
+  -e 's/… … Noguchi San/......Noguchi-san/'                                   \
+  -e 's/Akke Ni Tora Re Ta/Akke ni Torareta/'                                 \
+  -e 's/Maruko Chan/Marukochan/'                                              \
+  -e 's/Maru Chan/Maruchan/'                                                  \
+  -e 's/Ichi Ken/Ikken/'                                                      \
+  -e 's/Mono Noke Hime/Mononoke Hime/'                                        \
+  -e 's/Mo Yuru/Moyuru/'                                                      \
+  -e 's/Onrī Ronrīgurōrī/Onrī Ronrī Gurōrī/'                                  \
+  -e 's/Kantorī Rōdo/Country Road/'                                           \
+  -e 's/Sutāgeizā/Stargazer/'                                                 \
+  -e 's/Zubari Maruo Kun Desho U !/Zubari Maruo-kun Deshou!/'                 \
+  -e 's/Terūno Uta/Terū no Uta/'                                              \
+  -e 's/Tokinonamida/Toki no Namida/'                                         \
+  -e 's/Shutsuen Sha/Shutsuensha/'                                            \
+  -e 's/Harehare Reyukai/Harehare Yukai/'                                     \
+  -e 's/Biba★ Rokku ~JapaneseSide~/Biba★ Rokku ~Japanese Side~/'              \
+  -e 's/Beibii~、Hanawa Kun Tōjō/Baby~ Hanawa Kun Tōjō/'                      \
+  -e 's/Rabirinsu ~Modan Dai Ni Shō ~/Rabirinsu ~Modan Dainishō~/'            \
+  -e 's/Rōrāsurūgōgōto Hamaji/Rōrāsurū Gō Gō to Hamaji/'                      \
+  -e 's/Jōsha Ken/Jōshaken/'                                                  \
+  -e 's/Korekushon/Collection/'                                               \
+  -e 's/Kyōto Shi/Kyōto-shi/'                                                 \
+  -e 's/Ima Made Nan Do Mo/Ima Made Nandomo/'                                 \
+  -e 's/Yoyogi Raibuhausu/Yoyogi Live House/'                                 \
+  -e 's/Tsutae Rare Yuku Michi/Tsutaerareyuku Michi/'                         \
+  -e 's/Tomo Zō &Hiroshi/Tomozō \& Hiroshi/'                                  \
+  -e 's/Ai o Tsukame Fujiki Kun/Ai o Tsukame Fujiki-kun/'                     \
+  -e 's/Ashita 、 Tenki Ni Nare 。/Ashita, Tenki ni Nare./'                   \
+  -e 's/Ki Kokorozashi Dan/Kishidan/'                                         \
+  -e 's/ Kun/-kun/'                                                           \
+  -e 's/Hata Aki/Hataaki/'                                                    \
+  -e 's/Akita Oba Ko/Akita Obako/'                                            \
+  -e 's/Date !Tachiagare Yamane-kun/Tate! Tachiagare Yamane-kun/'             \
+  -e 's/ !/!/'                                                                \
+  -e 's/\/aikyatchiongaku/\/ Eye-catch Ongaku/'                               \
+  -e 's/ ]/]/'                                                                
