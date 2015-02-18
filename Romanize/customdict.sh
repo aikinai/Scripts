@@ -100,4 +100,9 @@ read INPUT
   -e 's/Date !Tachiagare Yamane-kun/Tate! Tachiagare Yamane-kun/'             \
   -e 's/ !/!/'                                                                \
   -e 's/\/aikyatchiongaku/\/ Eye-catch Ongaku/'                               \
-  -e 's/ ]/]/'                                                                
+  -e 's/ ]/]/'                                                                \
+  -e 's/Gekko Hana/Gekkouka/'                                                 \
+  -e 's/Kaze Ni Notsu Te/Kaze ni Notte/'                                      \
+  -e 's/Daiyamondo Bajin/Diamond Virgin/'                                     \
+  -e 's/HELLorHEAVEN/HELL or HEAVEN/'                                         \
+  -e 's/itoshi no PsychoBreaker/~Itoshi no Psycho Breaker~/'                  
