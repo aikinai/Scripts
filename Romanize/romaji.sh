@@ -15,10 +15,20 @@ echo "$INPUT" |                                          \
   mecab -u Dict/UserDict.dic -F "%f[8] " -E "" -U "%m" | \
   kakasi -iutf8 -outf8 -Ka -Ha -Ja |                     \
   sed                                                    \
-  -e 's/a^/ā/g'                                          \
-  -e 's/e^/ē/g'                                          \
-  -e 's/i^/ī/g'                                          \
-  -e 's/o^/ō/g'                                          \
-  -e 's/u^/ū/g'                                          \
-  -e 's/ou/ō/g'                                          \
+  -e 's/a^/a/g'                                          \
+  -e 's/e^/e/g'                                          \
+  -e 's/i^/i/g'                                          \
+  -e 's/o^/o/g'                                          \
+  -e 's/u^/u/g'                                          \
   -e 's/\([^,]\) ,\([^,]\)/\1, \2/g'
+
+# I wish I could use this version, but the BMW won't even show the long vowels
+#
+#   sed                                                    \
+#   -e 's/a^/ā/g'                                          \
+#   -e 's/e^/ē/g'                                          \
+#   -e 's/i^/ī/g'                                          \
+#   -e 's/o^/ō/g'                                          \
+#   -e 's/u^/ū/g'                                          \
+#   -e 's/ou/ō/g'                                          \
+#   -e 's/\([^,]\) ,\([^,]\)/\1, \2/g'
