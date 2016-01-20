@@ -1,0 +1,82 @@
+#!/usr/bin/expect
+#
+# telegram-stickers.exp
+# Alan Rogers 2016/01/19
+# 
+# This expect script automates the process of uploading Sticker packs to 
+# Telegram using the telegram-cli client. The telegram-cli client must be 
+# installed and initialized first. Modify TELEGRAM_PUBLIC_KEY and 
+# TELEGRAM_COMMAND to point to the corrent locations to launch telegram-cli.
+#
+# I barely know what I'm doing with expect and error handling seems very 
+# difficult, so this script barrels straight through the process with a lot of 
+# assumptions and sleep commands, and no error handling.
+#
+# All stickers are attached to the ✴️ emoji. It was one of the few emoji I could 
+# find that would successfully pass through expect while also being allowed by 
+# Telegram.
+#
+
+if {[llength $argv] == 0} {
+  send_user "Usage: telegram-stickers.exp sticker_pack_name sticker_pack_address image_folder\n"
+  exit 1
+}
+
+set NAME [lindex $argv 0]
+set ADDRESS [lindex $argv 1]
+set FOLDER [lindex $argv 2]
+set IMAGES [exec find $FOLDER -iname *.png]
+set HOME $::env(HOME)
+
+set TELEGRAM_PUBLIC_KEY "$HOME/Programs/Telegram/server.pub"
+set TELEGRAM_COMMAND "$HOME/Programs/Telegram/bin/telegram-cli -k $TELEGRAM_PUBLIC_KEY"
+
+spawn {*}$TELEGRAM_COMMAND
+
+expect ">"
+sleep 1
+send "contact_search Stickers\r"
+sleep 1
+
+expect "Stickers"
+expect ">"
+sleep 1
+send "msg Stickers /newpack\r"
+sleep 1
+
+expect ">>>"
+expect ">"
+sleep 1
+send "msg Stickers $NAME\r"
+sleep 1
+
+foreach IMAGE $IMAGES {
+  expect ">>>"
+  expect ">"
+  sleep 1
+  send "msg Stickers ✴️\r"
+  sleep 1
+
+  expect ">>>"
+  expect ">"
+  sleep 1
+  send "send_document Stickers $IMAGE\r"
+  sleep 1
+}
+
+expect ">>>"
+expect ">"
+sleep 1
+send "msg Stickers /publish\r"
+sleep 1
+
+expect ">>>"
+expect ">"
+sleep 1
+send "msg Stickers $ADDRESS\r"
+sleep 1
+
+expect ">>>"
+expect ">"
+sleep 5
+send "quit\r"
