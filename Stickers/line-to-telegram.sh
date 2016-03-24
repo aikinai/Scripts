@@ -38,6 +38,15 @@ curl -o ${ZIP_PACK} ${LINE_URL}
 unzip ${ZIP_PACK}
 rm -rf *_key* tab_* productInfo.meta
 
+# Sometimes the files are optimized for iPhone and can't be scaled by 
+# ImageMagick, so this uses Xcode's version of pngcrush to revert the iPhone 
+# optimizations
+for IMAGE in *.png
+do
+  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/pngcrush -revert-iphone-optimizations $IMAGE tmp.png
+  mv tmp.png $IMAGE
+done
+
 # Scale images to 512 pixels on the longest side
 # This is required for Telegram stickers
 for IMAGE in *.png
