@@ -44,11 +44,12 @@ exiftool '-FileName<DateTimeOriginal' -d "%Y-%m-%dT%H%M%S${TIMEZONE}%%-c.%%le" "
 # image with no count, leaving the files out of order in most alphabetical
 # sorts. This looks for any files with a count and adds -0 to the first file in
 # the series.
-find "$DIR" -iname "*-1.jpg" -print0 | while read -d $'\0' FILE
+find -E . -iregex ".*-1\.(jpg|arw|xmp)" -print0 | while read -d $'\0' FILE
 do
-  BASENAME="${FILE%-1.jpg}"
+  EXTENSION="${FILE##*.}"
+  BASENAME="${FILE%-1.*}"
   if [ -n "${BASENAME}" ]; then
-    mv "${BASENAME}.jpg" "${BASENAME}-0.jpg"
+    mv "${BASENAME}.${EXTENSION}" "${BASENAME}-0.${EXTENSION}"
   else
     echo -e ""
     echo -e "\x1B[00;31mERROR\x1B[00m: Failed renaming first image in a series."
