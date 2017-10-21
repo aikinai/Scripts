@@ -49,7 +49,7 @@ do
   EXTENSION="${FILE##*.}"
   BASENAME="${FILE%-1.*}"
   if [ -n "${BASENAME}" ]; then
-    mv "${BASENAME}.${EXTENSION}" "${BASENAME}-0.${EXTENSION}"
+    mv -vi "${BASENAME}.${EXTENSION}" "${BASENAME}-0.${EXTENSION}"
   else
     echo -e ""
     echo -e "\x1B[00;31mERROR\x1B[00m: Failed renaming first image in a series."
@@ -57,5 +57,18 @@ do
     exit 1
   fi
 done
+
+# Update file creation and modification dates to match EXIF data since
+# Apple Photos ignores photo metadata
+if ls *.jpg 1> /dev/null 2>&1; then
+  for FILE in "${DIR}"/*.jpg
+  do
+    CREATEDATE="$(exiftool -d "%m/%d/%Y %H:%M:%S" -DateTimeOriginal ${FILE} | sed 's/^.* : //')"
+    SetFile \
+      -d "${CREATEDATE}" \
+      -m "${CREATEDATE}" \
+      "${FILE}"
+  done
+fi
 
 exit 0
