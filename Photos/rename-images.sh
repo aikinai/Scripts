@@ -38,7 +38,7 @@ if ! command -v exiftool > /dev/null; then
 fi
 
 # Use exiftool's build in rename function to rename all images with ISO8601 time
-exiftool '-FileName<DateTimeOriginal' -d "%Y-%m-%dT%H%M%S${TIMEZONE}%%-c.%%le" "$DIR"
+exiftool '-FileName<DateTimeOriginal' -d "%Y-%m-%dT%H%M%S${TIMEZONE}%%-c.%%le" -fileOrder FileName "$DIR"
 
 # When exiftool adds counts to images with the same time, it leave the first
 # image with no count, leaving the files out of order in most alphabetical
