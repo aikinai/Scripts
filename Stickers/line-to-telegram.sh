@@ -43,7 +43,7 @@ rm -rf *_key* tab_* productInfo.meta
 # optimizations
 for IMAGE in *.png
 do
-  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/pngcrush -revert-iphone-optimizations $IMAGE tmp.png
+  pngcrush -revert-iphone-optimizations $IMAGE tmp.png
   mv tmp.png $IMAGE
 done
 

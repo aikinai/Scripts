@@ -28,8 +28,8 @@ set FOLDER [lindex $argv 2]
 set IMAGES [exec find $FOLDER -iname *.png]
 set HOME $::env(HOME)
 
-set TELEGRAM_PUBLIC_KEY "$HOME/Programs/Telegram/server.pub"
-set TELEGRAM_COMMAND "$HOME/Programs/Telegram/bin/telegram-cli -k $TELEGRAM_PUBLIC_KEY"
+set TELEGRAM_PUBLIC_KEY "$HOME/.telegram-cli/server.pub"
+set TELEGRAM_COMMAND "telegram -k $TELEGRAM_PUBLIC_KEY"
 
 spawn {*}$TELEGRAM_COMMAND
 
