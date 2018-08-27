@@ -12,7 +12,7 @@
 # First argument is the directory in which to rename images
 if [ -z "$1" ]; then
   echo -e ""
-  echo -e "USAGE: exif-to-modified.sh INPUT_DIRECTORY"
+  echo -e "USAGE: tag-keywords.sh INPUT_DIRECTORY"
   echo -e ""
   exit 1
 else
@@ -37,7 +37,7 @@ fi
 if ls "${DIR}"/*.jpg 1> /dev/null 2>&1; then
   for FILE in "${DIR}"/*.jpg
   do
-    KEYWORDS="$(exiftool -s3 -keywords ${FILE})"
+    KEYWORDS="$(exiftool -s3 -subject ${FILE})"
     echo -e "\x1B[00;33m${FILE}\x1B[00m ${KEYWORDS}"
     IFS=","
     for KEYWORD in $KEYWORDS
