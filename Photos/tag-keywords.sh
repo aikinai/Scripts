@@ -33,12 +33,15 @@ if ! command -v tag > /dev/null; then
   exit 1
 fi
 
+echo -e ""
+echo -e "\x1B[01;35mSet MacOS Finder tags from EXIF\x1B[00m"
+
 # Extract all keywords with exiftool and tag with tag
 if ls "${DIR}"/*.jpg 1> /dev/null 2>&1; then
   for FILE in "${DIR}"/*.jpg
   do
     KEYWORDS="$(exiftool -s3 -subject ${FILE})"
-    echo -e "\x1B[00;33m${FILE}\x1B[00m ${KEYWORDS}"
+    echo -e "\x1B[00;33m${FILE}\x1B[00m ← ${KEYWORDS}"
     IFS=","
     for KEYWORD in $KEYWORDS
     do

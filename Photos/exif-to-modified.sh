@@ -33,9 +33,12 @@ if ! command -v exiftool > /dev/null; then
     exit 1
 fi
 
+echo -e ""
+echo -e "\x1B[01;35mSet file creation and modification dates from EXIF\x1B[00m"
+
 # Update file creation and modification dates to match EXIF data since
 # Apple Photos ignores photo metadata
-if ls *.jpg 1> /dev/null 2>&1; then
+if ls "${DIR}"/*.jpg 1> /dev/null 2>&1; then
   for FILE in "${DIR}"/*.jpg
   do
     CREATEDATE="$(exiftool -d "%m/%d/%Y %H:%M:%S" -DateTimeOriginal ${FILE} | sed 's/^.* : //')"
@@ -43,6 +46,7 @@ if ls *.jpg 1> /dev/null 2>&1; then
       -d "${CREATEDATE}" \
       -m "${CREATEDATE}" \
       "${FILE}"
+    echo -e "${FILE} ← \x1B[00;33m${CREATEDATE}\x1B[00m"
   done
 fi
 

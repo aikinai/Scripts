@@ -37,7 +37,7 @@ do
   FILENAME="${FILENAME%.*}"
   OUTPUT="$(find ~/Pictures/Import -name "${FILENAME}.eip")"
   tag --add "Share" "${OUTPUT}"
-  echo -e "\x1B[00;32mShare\x1B[00m → ${OUTPUT}"
+  echo -e "${OUTPUT} ← \x1B[00;32mShare\x1B[00m"
 done
 
 for FILE in $(tag --find "♡" "${DIR}")
@@ -46,7 +46,7 @@ do
   FILENAME="${FILENAME%.*}"
   OUTPUT="$(find ~/Pictures/Import -name "${FILENAME}.eip")"
   tag --add "♡" "${OUTPUT}"
-  echo -e "\x1B[00;31m♡\x1B[00m → ${OUTPUT}"
+  echo -e "${OUTPUT} ← \x1B[00;32m♡\x1B[00m"
 done
 
 exit 0
