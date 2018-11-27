@@ -29,4 +29,8 @@ echo -e ""
 echo -e "\x1B[01;35mCopy Share tagged photos to ~/Pictures/Share/\x1B[00m"
 rsync -vaX $(tag -f "Share" "${DIR}") ~/Pictures/Share/
 
+echo -e ""
+echo -e "\x1B[01;35mCopy Frame tagged photos to ~/Pictures/Frame/\x1B[00m"
+rsync -vaX $(tag -f "Frame" "${DIR}") ~/Pictures/Frame/
+
 exit 0
