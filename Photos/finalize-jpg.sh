@@ -26,7 +26,7 @@ ${SCRIPT_DIR}/tag-keywords.sh "${DIR}"
 ${SCRIPT_DIR}/copy-tags.sh "${DIR}"
 
 echo -e ""
-echo -e "\x1B[01;35mCopy Share tagged photos to ~/Pictures/Upload/\x1B[00m"
-rsync -vaX $(tag -f "Share" "${DIR}") ~/Pictures/Upload/
+echo -e "\x1B[01;35mCopy Share tagged photos to ~/Pictures/Share/\x1B[00m"
+rsync -vaX $(tag -f "Share" "${DIR}") ~/Pictures/Share/
 
 exit 0
