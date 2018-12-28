@@ -4,14 +4,14 @@
 # Alan Rogers
 # 2018/09/07
 #
-# Copy MacOS Finder tags from JPG to EIP
+# Copy MacOS Finder tags from exported photos back to raw EIP files.
 # Very specific to my standard file structure.
 # Only works on tags "Share" and "♡".
 #
 # Usage: copy-tags.sh INPUT
 #
 
-# First argument is the directory with JPGs to copy tags from
+# First argument is the directory with exported photos to copy tags from
 if [ -z "$1" ]; then
     echo -e ""
     echo -e "USAGE: copy-tags.sh INPUT"
@@ -29,7 +29,7 @@ if ! command -v tag > /dev/null; then
 fi
 
 echo -e ""
-echo -e "\x1B[01;35mCopy MacOS Finder tags from JPGs to EIPs\x1B[00m"
+echo -e "\x1B[01;35mCopy MacOS Finder tags from exported photos to EIPs\x1B[00m"
 
 for FILE in $(tag --find "Share" "${DIR}")
 do
