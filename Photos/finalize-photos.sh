@@ -23,7 +23,10 @@ fi
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
-"${SCRIPT_DIR}"/encode-heic.js "${DIR}"/*.tif
+"${SCRIPT_DIR}"/encode-heic.swift "${DIR}"/*.tif
+if [ $? -ne 0 ]; then
+  exit 1
+fi
 rm -rf "${DIR}"/*.tif
 "${SCRIPT_DIR}"/exif-to-modified.sh "${DIR}"
 "${SCRIPT_DIR}"/tag-keywords.sh "${DIR}"
