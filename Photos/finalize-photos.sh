@@ -38,6 +38,7 @@ rm -rf "${DIR}"/*.tif
 
 echo -e ""
 echo -e "\x1B[01;35mCopy Frame tagged photos to ~/Pictures/Frame/\x1B[00m"
+# This doesn't work with files with spaces. Need to fix it.
 rsync -vaX $(tag -f "Frame" "${DIR}") ~/Pictures/Frame/
 
 exit 0
