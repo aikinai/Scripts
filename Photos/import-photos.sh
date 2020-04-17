@@ -55,7 +55,10 @@ do
         mkdir -p "${DESTINATION}"
       fi
       echo -e "\x1B[00;33m${BASENAME}\x1B[00m → \x1B[00;34m${DESTINATION}\x1B[00m"
-      rsync -aX "${FILE}" "${XML_FILE}" "${DESTINATION}"
+      rsync -aX "${FILE}" "${DESTINATION}"
+      if [ -n "${XML_FILE}" ]; then
+        rsync -aX "${XML_FILE}" "${DESTINATION}"
+      fi
       if [ "${RENAME}" = true ]; then
         "${SCRIPT_DIR}"/../Encoding/rename-to-time.sh "${DESTINATION}""${BASENAME}"
       fi
