@@ -10,6 +10,13 @@
 # Untitled or NO NAME into dated folders in ~/Pictures/Import/
 #
 
+if ! command -v exiftool > /dev/null; then
+    echo -e ""
+    echo -e "\x1B[00;31mERROR\x1B[00m: Please install exiftool."
+    echo -e ""
+    exit 1
+fi
+
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 for VOLUME in "NO NAME" "Untitled"
