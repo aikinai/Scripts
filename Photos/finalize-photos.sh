@@ -23,7 +23,7 @@ fi
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
-"${SCRIPT_DIR}"/encode-heic.sh "${DIR}"/*.tif
+"${SCRIPT_DIR}"/encode-heic.swift "${DIR}"/*.tif
 if [ $? -ne 0 ]; then
   exit 1
 fi
