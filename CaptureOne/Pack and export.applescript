@@ -16,7 +16,7 @@ Pack and export
 tell application "Capture One 12"
 	-- Pack all photos as EIP
 	repeat with theImage in images of current document
-		if theImage is not packed then
+		if theImage is not packed and extension of theImage is "ARW" then
 			pack theImage
 		end if
 	end repeat
