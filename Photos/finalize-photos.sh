@@ -55,6 +55,14 @@ if [ ${#heic_files[@]} -gt 0 ]; then
         set end of photoFiles to photoFile
       end repeat
       set importedFiles to import photoFiles
+
+      set favoriteKeyword to "♡"
+      repeat with mediaItem in importedFiles
+        set mediaKeywords to keywords of mediaItem
+        if favoriteKeyword is in mediaKeywords then
+          set favorite of mediaItem to true
+        end if
+      end repeat
     end tell
 
     if (count of importedFiles) = (count of heicFiles) then
