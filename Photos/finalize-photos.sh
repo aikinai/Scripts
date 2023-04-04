@@ -57,10 +57,20 @@ if [ ${#heic_files[@]} -gt 0 ]; then
       set importedFiles to import photoFiles
 
       set favoriteKeyword to "♡"
+      set frameKeyword to "Frame"
+      set frameAlbum to album "Frame"
+      set frameLandscapeAlbum to album "Frame Landscape"
+
       repeat with mediaItem in importedFiles
         set mediaKeywords to keywords of mediaItem
         if favoriteKeyword is in mediaKeywords then
           set favorite of mediaItem to true
+        end if
+        if frameKeyword is in mediaKeywords then
+          add mediaItem to frameAlbum
+          if width of mediaItem > height of mediaItem then
+            add mediaItem to frameLandscapeAlbum
+          end if
         end if
       end repeat
     end tell
