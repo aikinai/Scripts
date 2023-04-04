@@ -32,13 +32,41 @@ rm -rf "${DIR}"/*.tif
 "${SCRIPT_DIR}"/tag-keywords.sh "${DIR}"
 "${SCRIPT_DIR}"/copy-tags.sh "${DIR}"
 
-# echo -e ""
-# echo -e "\x1B[01;35mCopy Share tagged photos to ~/Pictures/Share/\x1B[00m"
-# rsync -vaX $(tag -f "Share" "${DIR}") ~/Pictures/Share/
+# Import HEIC files to Apple Photos
+echo -e "\x1B[01;35mImport to Apple Photos\x1B[00m"
 
-echo -e ""
-echo -e "\x1B[01;35mCopy Frame tagged photos to ~/Pictures/Frame/\x1B[00m"
-# This doesn't work with files with spaces. Need to fix it.
-rsync -vaX $(tag -f "Frame" "${DIR}") ~/Pictures/Frame/
+heic_files=()
+for file in "${DIR}"/*.heic; do
+    heic_files+=("$(realpath "$file")")
+done
+
+if [ ${#heic_files[@]} -gt 0 ]; then
+  import_result=$(osascript <<EOD
+    set heicFilesStr to "$(printf '%s\n' "${heic_files[@]}")"
+    set heicFiles to the paragraphs of heicFilesStr
+    set photosApp to (path to application "Photos")
+
+    tell application "Photos"
+      set importedFiles to {}
+      set photoFiles to {}
+      repeat with heicFile in heicFiles
+        set posixPath to heicFile as string
+        set photoFile to POSIX file posixPath as alias
+        set end of photoFiles to photoFile
+      end repeat
+      set importedFiles to import photoFiles
+    end tell
+
+    if (count of importedFiles) = (count of heicFiles) then
+      return "All photos successfully imported"
+    else
+      return "Some photos may not have been imported"
+    end if
+EOD
+)
+  echo -e "$import_result"
+else
+  echo "No HEIC images found; nothing imported to Apple Photos"
+fi
 
 exit 0
