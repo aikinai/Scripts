@@ -13,10 +13,10 @@
 # First argument is the exported photo directory to finalize
 
 if [ -z "$1" ]; then
-    echo -e ""
-    echo -e "USAGE: finalize-photos.sh INPUT"
-    echo -e ""
-    exit 1
+  echo -e ""
+  echo -e "USAGE: finalize-photos.sh INPUT"
+  echo -e ""
+  exit 1
 else
   DIR=$1
 fi
@@ -37,12 +37,15 @@ echo -e "\x1B[01;35mImport to Apple Photos\x1B[00m"
 
 heic_files=()
 for file in "${DIR}"/*.heic; do
-    heic_files+=("$(realpath "$file")")
+  heic_files+=("$(realpath "$file")")
 done
 
+# Sort HEIC files by filename
 if [ ${#heic_files[@]} -gt 0 ]; then
+  readarray -t sorted_heic_files < <(printf '%s\n' "${heic_files[@]}" | sort)
+
   import_result=$(osascript <<EOD
-    set heicFilesStr to "$(printf '%s\n' "${heic_files[@]}")"
+    set heicFilesStr to "$(printf '%s\n' "${sorted_heic_files[@]}")"
     set heicFiles to the paragraphs of heicFilesStr
     set photosApp to (path to application "Photos")
 
@@ -78,11 +81,11 @@ if [ ${#heic_files[@]} -gt 0 ]; then
     if (count of importedFiles) = (count of heicFiles) then
       return "All photos successfully imported"
     else
-      return "Some photos may not have been imported"
+      return "An error occurred while importing photos to Apple Photos."
     end if
 EOD
 )
-  echo -e "$import_result"
+echo -e "$import_result"
 else
   echo "No HEIC images found; nothing imported to Apple Photos"
 fi
