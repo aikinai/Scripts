@@ -61,8 +61,8 @@ if [ ${#heic_files[@]} -gt 0 ]; then
 
       set favoriteKeyword to "♡"
       set frameKeyword to "Frame"
-      set frameAlbum to album "Frame"
-      set frameLandscapeAlbum to album "Frame Landscape"
+      set frameAlbum to container "Frame"
+      set frameLandscapeAlbum to container "Frame Landscape"
 
       repeat with mediaItem in importedFiles
         set mediaKeywords to keywords of mediaItem
