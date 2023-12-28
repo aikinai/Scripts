@@ -19,18 +19,19 @@ fi
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
-for VOLUME in "NO NAME" "Untitled"
+for VOLUME in "NO NAME" "Untitled" "MEMORY CARD" "Lexar" "SanDisk64" "SanDisk"
 do
   DRIVE="/Volumes/${VOLUME}"
 
   if [ ! -d "${DRIVE}" ]; then
     continue
   fi
-  find "${DRIVE}" -not -path "*.Trashes*" \
+  find "${DRIVE}" "${DRIVE}/PRIVATE" -not -path "*.Trashes*" \
                   \( -iname "*.jpeg" -o \
                      -iname "*.jpg" -o \
                      -iname "*.arw" -o \
                      -iname "*.mp4" -o \
+                     -iname "*.MP4" -o \
                      -iname "*.mts" \) \
                      -print0 | sort -z | while read -d $'\0' FILE
     do
