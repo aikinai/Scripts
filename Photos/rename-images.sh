@@ -56,7 +56,7 @@ exiftool \
 # image with no count, leaving the files out of order in most alphabetical
 # sorts. This looks for any files with a count and adds -0 to the first file in
 # the series.
-find -E . -maxdepth 1 -iregex ".*-1\.(jpg|arw|xmp|tif|eip)" -print0 | while read -d $'\0' FILE
+find . -maxdepth 1 -iregex ".*-1\.(jpg|arw|xmp|tif|eip)" -print0 | while read -d $'\0' FILE
 do
   EXTENSION="${FILE##*.}"
   BASENAME="${FILE%-1.*}"
