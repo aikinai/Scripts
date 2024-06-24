@@ -4,9 +4,9 @@
 # Alan Rogers
 # 2016/06/25
 #
-# Renames all JPEGs in a directory with ISO8601-formatted time taken from EXIF
+# Renames all images (and XML/XMP files) in a directory with ISO8601-formatted time taken from EXIF
 # DateTimeOriginal tag. If there are multiple images with the same time, the
-# count is added the end of the filename.
+# count is added to the end of the filename.
 #
 # Usage: rename-images.sh DIRECTORY [TIMEZONE]
 #
@@ -37,7 +37,7 @@ if ! command -v exiftool > /dev/null; then
     exit 1
 fi
 
-# Use exiftool's build in rename function to rename all images with ISO8601 time
+# Use exiftool's built-in rename function to rename all images with ISO8601 time
 # Also copy EXIF dates to IPTC so Apple Photos will recognize the date
 exiftool \
 -overwrite_original \
@@ -50,13 +50,14 @@ exiftool \
 exiftool \
 '-FileName<DateTimeOriginal' -d "%Y-%m-%dT%H%M%S${TIMEZONE}%%-c.%%le" \
 -fileOrder FileName \
+-ext jpg -ext JPEG -ext xml -ext XML -ext arw -ext ARW -ext tif -ext TIF -ext xmp -ext XMP -ext eip -ext EIP \
 "$DIR"
 
 # When exiftool adds counts to images with the same time, it leave the first
 # image with no count, leaving the files out of order in most alphabetical
 # sorts. This looks for any files with a count and adds -0 to the first file in
 # the series.
-find . -maxdepth 1 -iregex ".*-1\.(jpg|arw|xmp|tif|eip)" -print0 | while read -d $'\0' FILE
+find . -maxdepth 1 -iregex ".*-1\.(jpg|arw|xmp|tif|eip|xml)" -print0 | while read -d $'\0' FILE
 do
   EXTENSION="${FILE##*.}"
   BASENAME="${FILE%-1.*}"
