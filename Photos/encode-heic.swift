@@ -14,7 +14,7 @@ import AVFoundation
 
 // HEIC quality setting of 0.75 seems to be about 50% of JPEG file size at 80% 
 // with the same perceptual quality
-let HEICQuality = 0.75
+let HEICQuality = 0.50
 print("\n\u{001B}[01;35mEncode all input files as HEIC at \u{001B}[0;33m\(HEICQuality) \u{001B}[01;35mquality\u{001B}[0;0m")
 
 for argument in CommandLine.arguments.dropFirst() {
